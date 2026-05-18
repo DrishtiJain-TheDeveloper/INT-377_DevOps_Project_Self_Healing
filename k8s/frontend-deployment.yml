@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: huntixx/ocean-frontend:latest
+        image: huntrixx/ocean-frontend:latest
 
         ports:
         - containerPort: 80
