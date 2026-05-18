@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deep Ocean Species</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="logo">🌊 DeepSea</div>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#species">Species</a></li>
+      <li><a href="#zones">Ocean Zones</a></li>
+      <li><a href="#facts">Facts</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Explore the Deep Ocean</h1>
+      <p>Discover the mysterious creatures that live beneath the waves, from sunlit shallows to the crushing darkness of the abyss.</p>
+      <a href="#species" class="btn">Explore Species</a>
+    </div>
+    <div class="bubbles">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <section id="species">
+    <h2 class="section-title">Ocean Species</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="shallow">Shallow</button>
+      <button class="filter-btn" data-filter="mid">Midwater</button>
+      <button class="filter-btn" data-filter="deep">Deep Sea</button>
+    </div>
+    <div class="species-grid" id="species-grid"></div>
+  </section>
+
+  <section id="zones">
+    <h2 class="section-title">Ocean Zones</h2>
+    <div class="zones-container">
+      <div class="zone" style="--depth-color: #0077b6">
+        <span class="zone-depth">0 – 200m</span>
+        <h3>Sunlight Zone</h3>
+        <p>Most ocean life lives here. Sunlight penetrates fully, supporting photosynthesis and rich biodiversity.</p>
+      </div>
+      <div class="zone" style="--depth-color: #023e8a">
+        <span class="zone-depth">200 – 1000m</span>
+        <h3>Twilight Zone</h3>
+        <p>Dim, cold, and under pressure. Many creatures here are bioluminescent to communicate and hunt.</p>
+      </div>
+      <div class="zone" style="--depth-color: #03045e">
+        <span class="zone-depth">1000 – 4000m</span>
+        <h3>Midnight Zone</h3>
+        <p>Completely dark. Creatures rely on chemosynthesis and have adapted to extreme pressure.</p>
+      </div>
+      <div class="zone" style="--depth-color: #000814">
+        <span class="zone-depth">4000m+</span>
+        <h3>The Abyss</h3>
+        <p>Near-freezing temperatures, crushing pressure. Only the most extreme life forms survive here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="facts">
+    <h2 class="section-title">Did You Know?</h2>
+    <div class="fact-box">
+      <p id="fact-text">Click the button to reveal an ocean fact.</p>
+      <button class="btn" id="fact-btn">New Fact</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>🌊 DeepSea Explorer — Built for curiosity</p>
+  </footer>
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <img id="modal-img" src="" alt="" />
+      <h3 id="modal-name"></h3>
+      <p id="modal-zone"></p>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
