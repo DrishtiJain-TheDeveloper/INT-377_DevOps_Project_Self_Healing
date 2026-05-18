@@ -5,7 +5,7 @@ pipeline {
         stage('Clone_Code_From_Repository_on Github') {
             steps {
                 echo 'Cloning code from GitHub...'
-                git url: 'https://github.com/DrishtiJain-TheDeveloper/Jenkins_Pepeline_basic',
+                git url: 'https://github.com/DrishtiJain-TheDeveloper/INT-377_DevOps_Project_Self_Healing',
                     branch: 'main'
             }
         }
