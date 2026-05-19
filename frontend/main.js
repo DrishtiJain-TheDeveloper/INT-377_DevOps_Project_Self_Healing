@@ -1,4 +1,4 @@
-const API_BASE = 'http://34.217.115.38:30001';
+const API_BASE = 'http://44.247.22.46:30001';
 
 const facts = [
   "The ocean covers more than 70% of Earth's surface but over 80% of it remains unexplored.",
