@@ -20,6 +20,7 @@ spec:
       containers:
       - name: backend
         image: huntrixx/ocean-backend:latest
+        imagePullPolicy: Always
 
         ports:
         - containerPort: 5000
