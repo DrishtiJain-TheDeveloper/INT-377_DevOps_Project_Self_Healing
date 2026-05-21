@@ -1,35 +1,63 @@
 pipeline {
-    agent { label 'WORKER_NODE_01' }
+    agent any
+
+    environment {
+        DOCKERHUB_USER = "huntrixx"
+        BACKEND_IMAGE = "huntrixx/ocean-backend:latest"
+        FRONTEND_IMAGE = "huntrixx/ocean-frontend:latest"
+    }
 
     stages {
-        stage('Clone_Code_From_Repository_on Github') {
+
+        stage('Clone Repo') {
             steps {
-                echo 'Cloning code from GitHub...'
                 git url: 'https://github.com/DrishtiJain-TheDeveloper/INT-377_DevOps_Project_Self_Healing',
                     branch: 'main'
             }
         }
 
-        stage('Stop Old Containers') {
+        stage('Build Images') {
             steps {
-                sh 'docker compose down || true'
+                sh """
+                    docker build -t $BACKEND_IMAGE ./backend
+                    docker build -t $FRONTEND_IMAGE ./frontend
+                """
             }
         }
 
-        stage('Build New Images') {
+        stage('Docker Login') {
             steps {
-                sh 'docker compose build'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-pass', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                sh '''
+                echo $PASS | docker login -u $USER --password-stdin'''
+                    
+                }
             }
         }
 
-        stage('Start Containers') {
+        stage('Push Images') {
             steps {
-                sh 'docker compose up -d'
+                sh """
+                    docker push $BACKEND_IMAGE
+                    docker push $FRONTEND_IMAGE
+                """
             }
         }
-        stage('Verify Running Containers') {
+        
+        stage('Deploy to Kubernetes') {
             steps {
-                sh 'docker ps'
+                sh "kubectl apply -f k8s/"
+                sh "kubectl rollout restart deployment backend-deployment"
+                sh "kubectl rollout restart deployment frontend-deployment"
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                sh """
+                    kubectl get pods
+                    kubectl get svc
+                """
             }
         }
     }
