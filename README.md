@@ -234,7 +234,7 @@ Tracks container restart counts for identifying unstable services.
 
 ## 🔹 Kubernetes Pods
 
-![Grafana Dashboard](screenshots/pods.png)
+![Pods](screenshots/pods.png)
 
 Example:
 
