@@ -244,7 +244,7 @@ Example:
 
 ## 🔹 Grafana Dashboard
 
-![Grafana Dashboard](screenshots/grafana.png)
+![Grafana Dashboard](screenshots/grafana_01.png)
 
 Recommended panels:
 
