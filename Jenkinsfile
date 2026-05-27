@@ -60,10 +60,5 @@ pipeline {
                 """
             }
         }
-        stage('Deploy Monitoring') {
-            steps {
-                sh 'kubectl apply -f monitoring/'
-                }
-        }
     }
 }
