@@ -200,23 +200,23 @@ Shows the number of healthy monitoring targets currently being scraped by Promet
 
 ---
 
-## 🔹 CPU Usage Monitoring
+## 🔹 CPU Usage Monitoring *(Suggested Enhancement)*
 
 ```promql
 sum(rate(container_cpu_usage_seconds_total[1m])) by (pod)
 ```
 
-Tracks real-time CPU utilization of Kubernetes pods.
+Suggested metric for tracking real-time CPU utilization of Kubernetes pods.
 
 ---
 
-## 🔹 Memory Usage Monitoring
+## 🔹 Memory Usage Monitoring *(Suggested Enhancement)*
 
 ```promql
 sum(container_memory_usage_bytes) by (pod)
 ```
 
-Monitors memory consumption across running containers.
+Suggested metric for monitoring memory consumption across running containers.
 
 ---
 
@@ -234,37 +234,52 @@ Tracks container restart counts for identifying unstable services.
 
 ## 🔹 Kubernetes Pods
 
-> Add screenshot here
+![Grafana Dashboard](screenshots/pods.png)
 
 Example:
 
-* `kubectl get pods -A`
+* `kubectl get pods`
 
 ---
 
 ## 🔹 Grafana Dashboard
 
-![Grafana Dashboard](screenshots/grafana_01.png)
+![Grafana Dashboard](screenshots/grafana.png)
 
-Recommended panels:
+Current implemented panels:
 
-* Healthy Targets
-* Running Pods
-* CPU Usage
-* Memory Usage
-* Replica Availability
+* Frontend Service Availability
+* Backend Service Availability
+* Frontend Active Pods
+* Backend Active Pods
+
+Example:
+
+```text
+screenshots/grafana.png
+```
 
 ---
 
-## 🔹 Prometheus Targets
+## 🔹 Prometheus Monitoring Query
 
-> Add Prometheus targets screenshot here
+![Grafana Dashboard](screenshots/prometheus.png)
+
+The Prometheus graph demonstrates monitoring of backend replica availability using PromQL queries.
+
+Example query used:
+
+```promql
+kube_deployment_status_replicas_available{deployment="backend-deployment"}
+```
 
 ---
 
-## 🔹 Node Monitoring
+## 🔹 Jenkins Pipeline Monitoring
 
-> Add node monitoring screenshot here
+![Grafana Dashboard](screenshots/jenkins.png)
+
+The Jenkins stage view demonstrates the CI/CD workflow execution and deployment pipe
 
 ---
 
