@@ -150,41 +150,83 @@ spec:
 
 # 📊 Grafana Dashboard Metrics
 
-## Healthy Monitoring Targets
+## 🔹 Frontend Service Availability
+
+```promql
+kube_deployment_status_replicas_available{deployment="frontend-deployment"}
+```
+
+Tracks the number of available frontend replicas running in the Kubernetes cluster.
+
+---
+
+## 🔹 Backend Service Availability
+
+```promql
+kube_deployment_status_replicas_available{deployment="backend-deployment"}
+```
+
+Monitors backend deployment availability and reliability.
+
+---
+
+## 🔹 Frontend Active Pods
+
+```promql
+count(kube_pod_status_phase{phase="Running", pod=~".*frontend.*"})
+```
+
+Displays the number of healthy frontend pods currently running.
+
+---
+
+## 🔹 Backend Active Pods
+
+```promql
+count(kube_pod_status_phase{phase="Running", pod=~".*backend.*"})
+```
+
+Displays the number of healthy backend pods currently running.
+
+---
+
+## 🔹 Healthy Monitoring Targets
 
 ```promql
 sum(up)
 ```
 
-## Running Pods
+Shows the number of healthy monitoring targets currently being scraped by Prometheus.
 
-```promql
-count(kube_pod_status_phase{phase="Running"})
-```
+---
 
-## Available Replicas
-
-```promql
-sum(kube_deployment_status_replicas_available)
-```
-
-## CPU Usage Monitoring
+## 🔹 CPU Usage Monitoring
 
 ```promql
 sum(rate(container_cpu_usage_seconds_total[1m])) by (pod)
 ```
 
-## Memory Usage Monitoring
+Tracks real-time CPU utilization of Kubernetes pods.
+
+---
+
+## 🔹 Memory Usage Monitoring
 
 ```promql
 sum(container_memory_usage_bytes) by (pod)
 ```
 
-## Restart Monitoring
+Monitors memory consumption across running containers.
+
+---
+
+## 🔹 Restart Monitoring
 
 ```promql
 sum(kube_pod_container_status_restarts_total)
 ```
+
+Tracks container restart counts for identifying unstable services.
 
 ---
 
@@ -202,7 +244,7 @@ Example:
 
 ## 🔹 Grafana Dashboard
 
-> Add dashboard screenshot here
+![Grafana Dashboard](screenshots/grafana.png)
 
 Recommended panels:
 
@@ -288,4 +330,4 @@ Cloud & DevOps Project
 
 KubeHealth Monitor demonstrates a real-time cloud infrastructure monitoring solution capable of tracking Kubernetes system health, deployment reliability, and resource utilization using Prometheus and Grafana.
 
-The project reflects modern DevOps monitoring prac
+The project reflects modern DevOps monitoring practices used in production cloud environments.
